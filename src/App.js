@@ -26,10 +26,10 @@ function App() {
       }}>
         <h2 style={{ margin: 0, color: '#00ff88' }}>SEO Offers</h2>
         <div style={{ display: 'flex', gap: '30px' }}>
-          <a href="#" style={{ color: 'white', textDecoration: 'none' }}>Home</a>
-          <a href="#" style={{ color: 'white', textDecoration: 'none' }}>Services</a>
-          <a href="#" style={{ color: 'white', textDecoration: 'none' }}>About</a>
-          <a href="#" style={{ color: 'white', textDecoration: 'none' }}>Contact</a>
+          <a href="/" style={{ color: 'white', textDecoration: 'none' }}>Home</a>
+          <a href="/services" style={{ color: 'white', textDecoration: 'none' }}>Services</a>
+          <a href="/about" style={{ color: 'white', textDecoration: 'none' }}>About</a>
+          <a href="/contact" style={{ color: 'white', textDecoration: 'none' }}>Contact</a>
         </div>
       </nav>
       <div style={{
