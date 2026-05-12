@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 const initialBlogs = [
@@ -35,7 +35,13 @@ const initialBlogs = [
 ]
 
 export default function Blog() {
-  const [blogs, setBlogs] = useState(initialBlogs)
+const [blogs, setBlogs] = useState(() => {
+  const saved = localStorage.getItem('blogs')
+  return saved ? JSON.parse(saved) : initialBlogs
+})
+useEffect(() => {
+  localStorage.setItem('blogs', JSON.stringify(blogs))
+}, [blogs])
   const [showForm, setShowForm] = useState(false)
   const [password, setPassword] = useState('')
   const [authenticated, setAuthenticated] = useState(false)
