@@ -40,7 +40,7 @@ function App() {
           <h2 style={{ margin: 0, color: 'white', fontSize: '1.2rem', letterSpacing: '2px' }}>©SEO OFFERS</h2>
           <div style={{ display: 'flex', gap: '40px' }}>
             {['HOME', 'SERVICES', 'ABOUT', 'CONTACT'].map(item => (
-              <a key={item} href="#" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontSize: '0.85rem', letterSpacing: '1px' }}>{item}</a>
+              <a key={item} href="/" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontSize: '0.85rem', letterSpacing: '1px' }}>{item}</a>
             ))}
           </div>
           <button style={{ padding: '10px 25px', background: 'transparent', border: '1px solid white', color: 'white', borderRadius: '25px', cursor: 'pointer', fontSize: '0.85rem' }}>
