@@ -20,7 +20,7 @@ export function Navbar() {
         borderRadius: "999px",
       }}
     >
-      <h3 style={{ margin: 0, letterSpacing: "2px" }}>PORTFOLIO</h3>
+      <h3 style={{ margin: 0, letterSpacing: "2px" }}>SEO Offers</h3>
 
       <div style={{ display: "flex", gap: "24px", fontSize: "14px" }}>
         <a href="#about" style={linkStyle}>About</a>

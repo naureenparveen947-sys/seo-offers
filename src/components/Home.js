@@ -1,33 +1,38 @@
 import { SentientSphere } from "./SentientSphere";
 
+const isMobile = window.innerWidth <= 768;
 export function Home() {
   return (
     <section
       style={{
         minHeight: "100vh",
-        background:
-          "radial-gradient(circle at top, #1a1a1a 0%, #000 60%)",
+        background: "radial-gradient(circle at top, #1a1a1a 0%, #000 60%)",
         color: "white",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         textAlign: "center",
-        padding: "120px 20px",
+        padding: "160px 20px 120px",
         position: "relative",
         overflow: "hidden",
       }}
     >
-      <div
-        style={{
-          position: "absolute",
-          width: "650px",
-          height: "650px",
-          opacity: 0.55,
-          zIndex: 0,
-        }}
-      >
-        <SentientSphere />
-      </div>
+      {!isMobile && (
+  <div
+    style={{
+      position: "absolute",
+      width: "650px",
+      height: "650px",
+      opacity: 0.42,
+      zIndex: 0,
+      top: "52%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+    }}
+  >
+    <SentientSphere />
+  </div>
+)}
 
       <div
         style={{
@@ -36,23 +41,11 @@ export function Home() {
           zIndex: 2,
         }}
       >
-        <p
-          style={{
-            color: "#888",
-            letterSpacing: "4px",
-            marginBottom: "20px",
-          }}
-        >
+        <p style={{ color: "#888", letterSpacing: "4px", marginBottom: "20px" }}>
           SEO • WEB DESIGN • MARKETING
         </p>
 
-        <h1
-          style={{
-            fontSize: "80px",
-            lineHeight: "1",
-            marginBottom: "24px",
-          }}
-        >
+        <h1 style={{ fontSize: "80px", lineHeight: "1", marginBottom: "24px" }}>
           Build A Brand
           <br />
           That Stands Out.
@@ -71,43 +64,31 @@ export function Home() {
           that help businesses grow online.
         </p>
 
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            gap: "20px",
-            flexWrap: "wrap",
-          }}
-        >
-          <button
-            style={{
-              padding: "16px 28px",
-              borderRadius: "999px",
-              border: "none",
-              background: "white",
-              color: "black",
-              fontWeight: "bold",
-              cursor: "pointer",
-            }}
-          >
-            GET FREE AUDIT
-          </button>
-
-          <button
-            style={{
-              padding: "16px 28px",
-              borderRadius: "999px",
-              border: "1px solid #333",
-              background: "transparent",
-              color: "white",
-              fontWeight: "bold",
-              cursor: "pointer",
-            }}
-          >
-            VIEW PROJECTS
-          </button>
+        <div style={{ display: "flex", justifyContent: "center", gap: "20px", flexWrap: "wrap" }}>
+          <button style={primaryBtn}>GET FREE AUDIT</button>
+          <button style={secondaryBtn}>VIEW PROJECTS</button>
         </div>
       </div>
     </section>
   );
 }
+
+const primaryBtn = {
+  padding: "16px 28px",
+  borderRadius: "999px",
+  border: "none",
+  background: "white",
+  color: "black",
+  fontWeight: "bold",
+  cursor: "pointer",
+};
+
+const secondaryBtn = {
+  padding: "16px 28px",
+  borderRadius: "999px",
+  border: "1px solid #333",
+  background: "transparent",
+  color: "white",
+  fontWeight: "bold",
+  cursor: "pointer",
+};
