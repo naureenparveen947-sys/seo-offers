@@ -1,6 +1,3 @@
-import { SentientSphere } from "./SentientSphere";
-
-const isMobile = window.innerWidth <= 768;
 export function Home() {
   return (
     <section
@@ -17,23 +14,6 @@ export function Home() {
         overflow: "hidden",
       }}
     >
-      {!isMobile && (
-  <div
-    style={{
-      position: "absolute",
-      width: "650px",
-      height: "650px",
-      opacity: 0.42,
-      zIndex: 0,
-      top: "52%",
-      left: "50%",
-      transform: "translate(-50%, -50%)",
-    }}
-  >
-    <SentientSphere />
-  </div>
-)}
-
       <div
         style={{
           maxWidth: "900px",
@@ -64,7 +44,14 @@ export function Home() {
           that help businesses grow online.
         </p>
 
-        <div style={{ display: "flex", justifyContent: "center", gap: "20px", flexWrap: "wrap" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "20px",
+            flexWrap: "wrap",
+          }}
+        >
           <button style={primaryBtn}>GET FREE AUDIT</button>
           <button style={secondaryBtn}>VIEW PROJECTS</button>
         </div>
