@@ -47,29 +47,16 @@ export function Packages() {
 
       <div style={packagesGrid}>
         {packages.map((item, index) => (
-          <div
-            key={index}
-            style={index === 1 ? featuredCard : glassCard}
-          >
-            <p style={packageNumber}>
-              PACKAGE 0{index + 1}
-            </p>
-
+          <div key={index} style={index === 1 ? featuredCard : glassCard}>
+            <p style={packageNumber}>PACKAGE 0{index + 1}</p>
             <h3 style={packageName}>{item.name}</h3>
-
             <h1 style={packagePrice}>{item.price}</h1>
-
             <div style={featuresWrap}>
               {item.features.map((feature, i) => (
-                <p key={i} style={featureText}>
-                  ✓ {feature}
-                </p>
+                <p key={i} style={featureText}>✓ {feature}</p>
               ))}
             </div>
-
-            <button style={ctaBtn}>
-              GET FREE AUDIT
-            </button>
+            <button style={ctaBtn}>GET FREE AUDIT</button>
           </div>
         ))}
       </div>
@@ -78,46 +65,53 @@ export function Packages() {
 }
 
 const packagesSection = {
-  minHeight: "100vh",
+  // ✅ minHeight "100vh" hata diya
   background: "#050505",
   color: "white",
-  padding: "140px 8%",
+  // ✅ 140px → clamp
+  padding: "clamp(60px, 8vw, 100px) clamp(20px, 6%, 80px)",
   borderTop: "1px solid rgba(255,255,255,0.08)",
 };
 
 const tag = {
   color: "#888",
   letterSpacing: "10px",
-  fontSize: "13px",
-  marginBottom: "34px",
+  fontSize: "clamp(11px, 1.5vw, 13px)",
+  marginBottom: "clamp(20px, 3vw, 34px)",
 };
 
 const heading = {
   fontFamily: "Georgia, serif",
-  fontSize: "clamp(56px,8vw,110px)",
-  lineHeight: "0.95",
+  // ✅ 56px minimum → 28px
+  fontSize: "clamp(28px, 5vw, 72px)",
+  lineHeight: "1.05",
   fontWeight: 400,
-  marginBottom: "70px",
+  // ✅ 70px → responsive
+  marginBottom: "clamp(30px, 5vw, 60px)",
 };
 
 const packagesGrid = {
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))",
-  gap: "28px",
+  // ✅ mobile pe single column
+  gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+  gap: "clamp(16px, 2vw, 28px)",
+  alignItems: "start",
 };
 
 const glassCard = {
   background:
     "linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02))",
   border: "1px solid rgba(255,255,255,0.1)",
-  borderRadius: "38px",
-  padding: "44px",
+  borderRadius: "clamp(22px, 3vw, 38px)",
+  // ✅ 44px → mobile pe 22px
+  padding: "clamp(22px, 4vw, 44px)",
   backdropFilter: "blur(14px)",
 };
 
 const featuredCard = {
   ...glassCard,
-  transform: "scale(1.03)",
+  // ✅ mobile pe scale hata diya — overflow hota tha
+  transform: "scale(1.02)",
   border: "1px solid rgba(255,255,255,0.2)",
   background:
     "linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03))",
@@ -126,37 +120,41 @@ const featuredCard = {
 const packageNumber = {
   color: "#777",
   letterSpacing: "4px",
-  fontSize: "12px",
-  marginBottom: "20px",
+  fontSize: "clamp(10px, 1.2vw, 12px)",
+  marginBottom: "clamp(12px, 2vw, 20px)",
 };
 
 const packageName = {
   fontFamily: "Georgia, serif",
-  fontSize: "36px",
+  // ✅ 36px → responsive
+  fontSize: "clamp(22px, 3vw, 34px)",
   marginBottom: "10px",
   fontWeight: 400,
 };
 
 const packagePrice = {
   fontFamily: "Georgia, serif",
-  fontSize: "76px",
-  margin: "18px 0 34px",
+  // ✅ 76px → mobile pe 40px
+  fontSize: "clamp(40px, 6vw, 76px)",
+  margin: "clamp(10px, 2vw, 18px) 0 clamp(20px, 3vw, 34px)",
   fontWeight: 400,
 };
 
 const featuresWrap = {
-  marginBottom: "36px",
+  marginBottom: "clamp(20px, 3vw, 36px)",
 };
 
 const featureText = {
   color: "#b0b0b0",
-  marginBottom: "14px",
-  fontSize: "16px",
+  marginBottom: "clamp(8px, 1.2vw, 14px)",
+  // ✅ responsive font
+  fontSize: "clamp(13px, 1.5vw, 16px)",
 };
 
 const ctaBtn = {
   width: "100%",
-  padding: "18px",
+  // ✅ padding responsive
+  padding: "clamp(12px, 2vw, 18px)",
   borderRadius: "999px",
   border: "1px solid rgba(255,255,255,0.1)",
   background:
@@ -166,4 +164,5 @@ const ctaBtn = {
   letterSpacing: "2px",
   cursor: "pointer",
   backdropFilter: "blur(12px)",
+  fontSize: "clamp(11px, 1.3vw, 13px)",
 };

@@ -22,7 +22,6 @@ export function About() {
         <div style={glassCard}>
           <div style={serviceItem}>
             <h3 style={serviceTitle}>SEO Optimization</h3>
-
             <p style={serviceText}>
               Improve rankings and visibility with premium SEO systems.
             </p>
@@ -30,7 +29,6 @@ export function About() {
 
           <div style={serviceItem}>
             <h3 style={serviceTitle}>Modern UI Design</h3>
-
             <p style={serviceText}>
               Cinematic futuristic website experiences for modern brands.
             </p>
@@ -38,7 +36,6 @@ export function About() {
 
           <div style={serviceItem}>
             <h3 style={serviceTitle}>Growth Strategy</h3>
-
             <p style={serviceText}>
               Data-driven branding and scalable digital direction.
             </p>
@@ -50,40 +47,46 @@ export function About() {
 }
 
 const aboutSection = {
-  minHeight: "100vh",
+  // ✅ minHeight "100vh" hata diya — extra space gone
   background: "#050505",
   color: "white",
-  padding: "140px 8%",
+  // ✅ 140px → clamp se mobile pe 60px, desktop pe 100px
+  padding: "clamp(60px, 8vw, 100px) clamp(20px, 6%, 80px)",
   borderTop: "1px solid rgba(255,255,255,0.08)",
 };
 
 const tag = {
   color: "#888",
   letterSpacing: "10px",
-  fontSize: "13px",
-  marginBottom: "34px",
+  // ✅ font thoda bada kiya readability ke liye
+  fontSize: "clamp(11px, 1.5vw, 13px)",
+  marginBottom: "clamp(20px, 3vw, 34px)",
 };
 
 const aboutGrid = {
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fit,minmax(320px,1fr))",
-  gap: "70px",
+  // ✅ mobile pe single column, desktop pe 2 column
+  gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+  // ✅ gap 70px → clamp se mobile pe 30px
+  gap: "clamp(30px, 5vw, 70px)",
   width: "100%",
   alignItems: "center",
 };
 
 const heading = {
   fontFamily: "Georgia, serif",
-  fontSize: "clamp(56px,8vw,110px)",
-  lineHeight: "0.95",
+  // ✅ 56px minimum bahut bada tha — 28px se start karo
+  fontSize: "clamp(28px, 5vw, 72px)",
+  lineHeight: "1.05",
   fontWeight: 400,
-  marginBottom: "28px",
+  marginBottom: "clamp(16px, 2vw, 28px)",
 };
 
 const text = {
   color: "#aaa",
   lineHeight: "1.9",
-  fontSize: "18px",
+  // ✅ font responsive kiya
+  fontSize: "clamp(14px, 1.8vw, 18px)",
   maxWidth: "620px",
 };
 
@@ -91,23 +94,27 @@ const glassCard = {
   background:
     "linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02))",
   border: "1px solid rgba(255,255,255,0.1)",
-  borderRadius: "36px",
-  padding: "50px",
+  borderRadius: "clamp(20px, 3vw, 36px)",
+  // ✅ padding 50px → mobile pe 24px
+  padding: "clamp(24px, 4vw, 50px)",
   backdropFilter: "blur(14px)",
 };
 
 const serviceItem = {
-  marginBottom: "34px",
+  // ✅ margin kam kiya
+  marginBottom: "clamp(20px, 3vw, 34px)",
 };
 
 const serviceTitle = {
   fontFamily: "Georgia, serif",
-  fontSize: "30px",
-  marginBottom: "12px",
+  // ✅ 30px → responsive
+  fontSize: "clamp(18px, 2.5vw, 28px)",
+  marginBottom: "clamp(8px, 1vw, 12px)",
 };
 
 const serviceText = {
   color: "#9d9d9d",
   lineHeight: "1.8",
-  fontSize: "16px",
+  // ✅ responsive font
+  fontSize: "clamp(13px, 1.5vw, 16px)",
 };
