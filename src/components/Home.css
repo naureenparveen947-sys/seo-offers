@@ -1,0 +1,131 @@
+.home-section {
+  min-height: 100vh;
+  background: #050505;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.45));
+  z-index: 1;
+}
+
+.left-text {
+  position: absolute;
+  top: 50%;
+  left: 4%;
+  transform: translateY(-50%);
+  z-index: 3;
+}
+
+.right-text {
+  position: absolute;
+  right: 4%;
+  bottom: 10%;
+  z-index: 3;
+  text-align: right;
+}
+
+.left-text h1,
+.right-text h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(64px, 8vw, 120px);
+  line-height: 0.9;
+  font-weight: 400;
+  margin: 0;
+}
+
+.center-btn {
+  position: absolute;
+  top: 74%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  padding: 20px 54px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: linear-gradient(145deg, rgba(255,255,255,0.22), rgba(255,255,255,0.04));
+  backdrop-filter: blur(14px);
+  box-shadow: 0 0 40px rgba(255,255,255,0.12);
+  color: white;
+  font-weight: bold;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.bridge-section {
+  position: relative;
+  z-index: 5;
+  background: #050505;
+  padding: 70px 8% 110px;
+}
+
+.bridge-line {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  margin-bottom: 38px;
+}
+
+.bridge-text {
+  text-align: center;
+  color: #888;
+  letter-spacing: 8px;
+  font-size: 12px;
+  margin-bottom: 38px;
+}
+
+.bridge-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.mini-card {
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 28px;
+  padding: 28px;
+  background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.015));
+  backdrop-filter: blur(12px);
+  color: #ddd;
+  font-family: Georgia, serif;
+  font-size: 22px;
+}
+
+/* Mobile Friendly */
+@media (max-width: 768px) {
+  .left-text {
+    top: 34%;
+    left: 5%;
+    transform: none;
+  }
+
+  .right-text {
+    right: 5%;
+    bottom: 16%;
+  }
+
+  .left-text h1,
+  .right-text h1 {
+    font-size: clamp(48px, 17vw, 78px);
+    line-height: 0.88;
+  }
+
+  .center-btn {
+    top: 64%;
+    left: 42%;
+    padding: 18px 42px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .bridge-text {
+    letter-spacing: 4px;
+    line-height: 1.8;
+  }
+}

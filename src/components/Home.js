@@ -9,40 +9,32 @@ export function Home() {
         <div style={overlay}></div>
 
         <div style={leftText}>
-          <p style={smallText}>01 — DISCIPLINE</p>
-
           <h1 style={leftHeading}>
-            SYSTEM
+            SEARCH ENGINE
             <br />
-            <em>ARCHITECT</em>
+            <em>OPTIMIZATION</em>
           </h1>
         </div>
 
         <div style={rightText}>
-          <p style={smallText}>02 — CRAFT</p>
-
           <h1 style={rightHeading}>
-            INTERFACE
+            TRAFFIC
             <br />
-            <em>DESIGNER</em>
+            <em>GROWTH</em>
           </h1>
         </div>
 
-        <button style={centerBtn}>INITIALIZE</button>
+        <button style={centerBtn}>GET FREE AUDIT</button>
       </section>
 
       <section style={bridgeSection}>
         <div style={bridgeLine}></div>
 
-        <p style={bridgeText}>
-          STRATEGY • DESIGN • SEO • GROWTH
-        </p>
+        <p style={bridgeText}>STRATEGY • DESIGN • SEO • GROWTH</p>
 
         <div style={bridgeCards}>
           <div style={miniCard}>01 / Brand Systems</div>
-
           <div style={miniCard}>02 / SEO Architecture</div>
-
           <div style={miniCard}>03 / Web Experiences</div>
         </div>
       </section>
@@ -62,14 +54,15 @@ const overlay = {
   position: "absolute",
   inset: 0,
   background:
-    "linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.75))",
+    "linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.45))",
   zIndex: 1,
 };
 
 const leftText = {
   position: "absolute",
-  top: "24%",
+  top: "50%",
   left: "4%",
+  transform: "translateY(-50%)",
   zIndex: 3,
 };
 
@@ -79,13 +72,6 @@ const rightText = {
   bottom: "10%",
   zIndex: 3,
   textAlign: "right",
-};
-
-const smallText = {
-  color: "#9a9a9a",
-  letterSpacing: "8px",
-  fontSize: "13px",
-  marginBottom: "24px",
 };
 
 const leftHeading = {
@@ -106,16 +92,17 @@ const rightHeading = {
 
 const centerBtn = {
   position: "absolute",
-  top: "50%",
-  left: "50%",
+  top: "74%",
+  left: "30%",
   transform: "translate(-50%, -50%)",
   zIndex: 4,
   padding: "20px 54px",
   borderRadius: "999px",
   border: "1px solid rgba(255,255,255,0.14)",
   background:
-    "linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03))",
-  backdropFilter: "blur(12px)",
+    "linear-gradient(145deg, rgba(255,255,255,0.22), rgba(255,255,255,0.04))",
+  backdropFilter: "blur(14px)",
+  boxShadow: "0 0 40px rgba(255,255,255,0.12)",
   color: "white",
   fontWeight: "bold",
   letterSpacing: "2px",
