@@ -1,5 +1,6 @@
 .home-section {
   min-height: 100vh;
+  height: 100vh;
   background: #050505;
   color: white;
   position: relative;
@@ -9,7 +10,7 @@
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.45));
+  background: linear-gradient(to bottom, rgba(0,0,0,0.03), rgba(0,0,0,0.38));
   z-index: 1;
 }
 
@@ -99,28 +100,37 @@
 
 /* Mobile Friendly */
 @media (max-width: 768px) {
+  .home-section {
+    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
+  }
+
   .left-text {
-    top: 34%;
+    top: 29%;
     left: 5%;
+    width: 90%;
     transform: none;
   }
 
   .right-text {
     right: 5%;
-    bottom: 16%;
+    bottom: 19%;
+    width: 90%;
+    text-align: right;
   }
 
   .left-text h1,
   .right-text h1 {
-    font-size: clamp(48px, 17vw, 78px);
-    line-height: 0.88;
+    font-size: clamp(38px, 12.5vw, 56px);
+    line-height: 0.92;
   }
 
   .center-btn {
-    top: 64%;
-    left: 42%;
-    padding: 18px 42px;
-    font-size: 13px;
+    top: 61%;
+    left: 50%;
+    padding: 16px 36px;
+    font-size: 12px;
     white-space: nowrap;
   }
 
