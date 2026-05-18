@@ -1,41 +1,56 @@
+import { useEffect, useState } from "react";
 import Sphere from "./Sphere";
 
 export function Home() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <>
-      <section id="home" style={homeSection}>
+      <section id="home" style={isMobile ? mobileHomeSection : homeSection}>
         <Sphere />
 
         <div style={overlay}></div>
 
-        <div style={leftText}>
-          <h1 style={leftHeading}>
+        <div style={isMobile ? mobileLeftText : leftText}>
+          <h1 style={isMobile ? mobileHeading : leftHeading}>
             SEARCH ENGINE
             <br />
             <em>OPTIMIZATION</em>
           </h1>
         </div>
 
-        <div style={rightText}>
-          <h1 style={rightHeading}>
+        <button style={isMobile ? mobileCenterBtn : centerBtn}>
+          GET FREE AUDIT
+        </button>
+
+        <div style={isMobile ? mobileRightText : rightText}>
+          <h1 style={isMobile ? mobileHeading : rightHeading}>
             TRAFFIC
             <br />
             <em>GROWTH</em>
           </h1>
         </div>
-
-        <button style={centerBtn}>GET FREE AUDIT</button>
       </section>
 
       <section style={bridgeSection}>
         <div style={bridgeLine}></div>
 
-        <p style={bridgeText}>STRATEGY • DESIGN • SEO • GROWTH</p>
+        <p style={isMobile ? mobileBridgeText : bridgeText}>
+          STRATEGY • DESIGN • SEO • GROWTH
+        </p>
 
-        <div style={bridgeCards}>
-          <div style={miniCard}>01 / Brand Systems</div>
-          <div style={miniCard}>02 / SEO Architecture</div>
-          <div style={miniCard}>03 / Web Experiences</div>
+        <div style={isMobile ? mobileBridgeCards : bridgeCards}>
+          <div style={isMobile ? mobileMiniCard : miniCard}>01 / Brand Systems</div>
+          <div style={isMobile ? mobileMiniCard : miniCard}>02 / SEO Architecture</div>
+          <div style={isMobile ? mobileMiniCard : miniCard}>03 / Web Experiences</div>
         </div>
       </section>
     </>
@@ -150,4 +165,66 @@ const miniCard = {
   color: "#ddd",
   fontFamily: "Georgia, serif",
   fontSize: "22px",
+};
+
+/* MOBILE ONLY */
+const mobileHomeSection = {
+  ...homeSection,
+  minHeight: "82vh",
+  padding: "125px 14px 38px",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+  boxSizing: "border-box",
+};
+
+const mobileLeftText = {
+  position: "relative",
+  zIndex: 3,
+  alignSelf: "flex-start",
+};
+
+const mobileRightText = {
+  position: "relative",
+  zIndex: 3,
+  alignSelf: "flex-end",
+  textAlign: "right",
+};
+
+const mobileHeading = {
+  fontFamily: "Georgia, serif",
+  fontSize: "clamp(30px, 10vw, 44px)",
+  lineHeight: "0.95",
+  fontWeight: 400,
+  margin: 0,
+};
+
+const mobileCenterBtn = {
+  ...centerBtn,
+  position: "relative",
+  top: "auto",
+  left: "auto",
+  transform: "none",
+  alignSelf: "center",
+  padding: "12px 28px",
+  fontSize: "10px",
+  letterSpacing: "1.2px",
+  margin: "25px 0",
+};
+
+const mobileBridgeText = {
+  ...bridgeText,
+  letterSpacing: "4px",
+  fontSize: "10px",
+};
+
+const mobileBridgeCards = {
+  ...bridgeCards,
+  gridTemplateColumns: "1fr",
+};
+
+const mobileMiniCard = {
+  ...miniCard,
+  fontSize: "16px",
+  padding: "20px",
 };

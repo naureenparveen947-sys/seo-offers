@@ -1,34 +1,58 @@
 @media screen and (max-width: 768px) {
-
-  .left-text {
-    top: 28% !important;
-    left: 5% !important;
-    width: 90% !important;
-    transform: none !important;
+  .home-section {
+    min-height: 82vh;
+    padding: 140px 14px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
-  .right-text {
-    right: 5% !important;
-    bottom: 16% !important;
-    width: 90% !important;
-    text-align: right !important;
+  .left-text,
+  .right-text,
+  .center-btn {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    transform: none;
+  }
+
+  .left-text {
+    max-width: 100%;
   }
 
   .left-text h1,
   .right-text h1 {
-    font-size: 34px !important;
-    line-height: 0.92 !important;
+    font-size: clamp(30px, 10vw, 46px);
+    line-height: 0.95;
   }
 
   .center-btn {
-    top: 56% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
+    align-self: center;
+    margin: 55px 0;
+    padding: 12px 30px;
+    font-size: 10px;
+  }
 
-    padding: 14px 30px !important;
-    font-size: 11px !important;
-    letter-spacing: 1px !important;
+  .right-text {
+    align-self: flex-end;
+    text-align: right;
+  }
+}
 
-    white-space: nowrap !important;
+@media screen and (max-width: 480px) {
+  .home-section {
+    min-height: 78vh;
+    padding: 125px 12px 34px;
+  }
+
+  .left-text h1,
+  .right-text h1 {
+    font-size: clamp(28px, 10.5vw, 40px);
+  }
+
+  .center-btn {
+    margin: 45px 0;
   }
 }
