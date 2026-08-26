@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { client } from "../sanity";
 
+console.log("Blogs.js loaded");
+
 export function Blogs() {
   const [blogs, setBlogs] = useState([
     {
@@ -12,18 +14,22 @@ export function Blogs() {
 
   useEffect(() => {
     client
-      .fetch(`*[_type == "post"] | order(publishedAt desc){
+      .fetch(`*[_type == "post" && !(_id in path("drafts.**"))] | order(_createdAt desc){
         title,
         "slug": slug.current,
         "category": categories[0]->title,
         "desc": pt::text(body)[0...140]
       }`)
       .then((data) => {
-        if (data.length > 0) {
+        console.log("Sanity blogs:", data);
+
+        if (Array.isArray(data) && data.length > 0) {
           setBlogs(data);
         }
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.log("Sanity error:", err);
+      });
   }, []);
 
   return (
@@ -48,7 +54,7 @@ export function Blogs() {
             </h3>
 
             <p style={blogText}>
-              {blog.desc}
+              {blog.desc || "No description available."}
             </p>
 
             <button style={readBtn}>
