@@ -1,83 +1,185 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { client } from "../sanity";
 
-console.log("Blogs.js loaded");
-
-function getPlainText(blocks) {
-  if (!Array.isArray(blocks)) return "";
-  return blocks
-    .map((block) =>
-      block._type === "block" && Array.isArray(block.children)
-        ? block.children.map((child) => child.text || "").join("")
-        : ""
-    )
-    .join(" ")
-    .slice(0, 140);
-}
-
 export function Blogs() {
-  const [blogs, setBlogs] = useState([
-    {
-      category: "SEO",
-      title: "How SEO Helps Businesses Grow Online",
-      desc: "Learn how SEO improves visibility, traffic, and long-term brand growth.",
-    },
-  ]);
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    client
-      .fetch(`*[_type == "post" && !(_id in path("drafts.**"))] | order(_createdAt desc){
+    const query = `
+      *[
+        _type == "post" &&
+        !(_id in path("drafts.**"))
+      ]
+      | order(_createdAt desc) {
+        _id,
         title,
         "slug": slug.current,
         "category": categories[0]->title,
-        body
-      }`)
-      .then((data) => {
-        console.log("Sanity blogs raw:", data);
+        _createdAt
+      }
+    `;
 
-        if (Array.isArray(data) && data.length > 0) {
-          const withDesc = data.map((post) => ({
-            ...post,
-            desc: getPlainText(post.body),
-          }));
-          setBlogs(withDesc);
-        }
+    client
+      .fetch(query)
+      .then((data) => {
+        console.log("Blogs:", data);
+        setBlogs(data || []);
+        setLoading(false);
       })
-      .catch((err) => {
-        console.log("Sanity error:", err);
+      .catch((error) => {
+        console.error("Blogs error:", error);
+        setLoading(false);
       });
   }, []);
 
   return (
-    <section id="blogs" style={blogsSection}>
-      <p style={tag}>BLOGS</p>
+    <section id="blogs" style={section}>
+      <div style={container}>
 
-      <h2 style={heading}>
-        Latest insights
-        <br />
-        from our studio.
-      </h2>
+        {/* Section heading */}
+        <div style={headingWrapper}>
+          <p style={eyebrow}>BLOG</p>
 
-      <div style={blogsGrid}>
-        {blogs.map((blog, index) => (
-          <article key={index} style={glassCard}>
-            <p style={category}>{blog.category || "BLOG"}</p>
-            <h3 style={blogTitle}>{blog.title}</h3>
-            <p style={blogText}>{blog.desc || "No description available."}</p>
-            <button style={readBtn}>READ MORE →</button>
-          </article>
-        ))}
+          <h2 style={heading}>
+            Thoughts &amp; Stories
+          </h2>
+        </div>
+
+        {/* Loading */}
+        {loading && (
+          <p style={message}>
+            Loading blogs...
+          </p>
+        )}
+
+        {/* No blogs */}
+        {!loading && blogs.length === 0 && (
+          <p style={message}>
+            No blogs found.
+          </p>
+        )}
+
+        {/* Blog cards */}
+        {!loading && blogs.length > 0 && (
+          <div style={grid}>
+            {blogs.map((blog) => (
+              <Link
+                key={blog._id}
+                to={`/blogs/${blog.slug}`}
+                style={card}
+              >
+                <div style={cardContent}>
+
+                  <p style={category}>
+                    {blog.category || "BLOG"}
+                  </p>
+
+                  <h3 style={blogTitle}>
+                    {blog.title}
+                  </h3>
+
+                  <span style={readMore}>
+                    Read Article →
+                  </span>
+
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
+
       </div>
     </section>
   );
 }
 
-const blogsSection = { background: "#050505", color: "white", padding: "clamp(60px, 8vw, 100px) clamp(20px, 6%, 80px)", borderTop: "1px solid rgba(255,255,255,0.08)" };
-const tag = { color: "#888", letterSpacing: "10px", fontSize: "clamp(11px, 1.5vw, 13px)", marginBottom: "clamp(20px, 3vw, 34px)" };
-const heading = { fontFamily: "Georgia, serif", fontSize: "clamp(28px, 5vw, 72px)", lineHeight: "1.05", fontWeight: 400, marginBottom: "clamp(30px, 5vw, 60px)" };
-const blogsGrid = { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "clamp(16px, 2vw, 28px)" };
-const glassCard = { background: "linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02))", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "clamp(20px, 3vw, 36px)", padding: "clamp(22px, 3.5vw, 40px)", backdropFilter: "blur(14px)", display: "flex", flexDirection: "column" };
-const category = { color: "#777", letterSpacing: "4px", fontSize: "clamp(10px, 1.2vw, 12px)", marginBottom: "clamp(12px, 2vw, 20px)" };
-const blogTitle = { fontFamily: "Georgia, serif", fontSize: "clamp(20px, 2.8vw, 32px)", lineHeight: "1.2", marginBottom: "clamp(12px, 1.5vw, 20px)", fontWeight: 400 };
-const blogText = { color: "#aaa", lineHeight: "1.9", fontSize: "clamp(13px, 1.5vw, 17px)", marginBottom: "clamp(20px, 3vw, 34px)", flex: 1 };
-const readBtn = { padding: "clamp(12px, 1.5vw, 16px) clamp(18px, 2.5vw, 28px)", borderRadius: "999px", border: "1px solid rgba(255,255,255,0.12)", background: "linear-gradient(145deg, rgba(255,255,255,0.14), rgba(255,255,255,0.05))", color: "white", fontWeight: "bold", letterSpacing: "2px", cursor: "pointer", backdropFilter: "blur(12px)", fontSize: "clamp(11px, 1.3vw, 13px)", alignSelf: "flex-start" };
+
+/* =========================
+   STYLES
+========================= */
+
+const section = {
+  minHeight: "80vh",
+  background: "#050505",
+  color: "white",
+  padding: "120px 20px",
+};
+
+const container = {
+  maxWidth: "1200px",
+  margin: "0 auto",
+};
+
+const headingWrapper = {
+  marginBottom: "70px",
+};
+
+const eyebrow = {
+  color: "#777",
+  letterSpacing: "5px",
+  fontSize: "12px",
+  marginBottom: "20px",
+  textTransform: "uppercase",
+};
+
+const heading = {
+  fontFamily: "Georgia, serif",
+  fontSize: "clamp(45px, 7vw, 90px)",
+  fontWeight: 400,
+  lineHeight: 1.05,
+  margin: 0,
+};
+
+const grid = {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+  gap: "25px",
+};
+
+const card = {
+  display: "block",
+  minHeight: "300px",
+  padding: "35px",
+  background: "#0d0d0d",
+  border: "1px solid #222",
+  color: "white",
+  textDecoration: "none",
+  transition: "all 0.3s ease",
+};
+
+const cardContent = {
+  height: "100%",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+};
+
+const category = {
+  color: "#777",
+  letterSpacing: "4px",
+  fontSize: "11px",
+  margin: 0,
+  textTransform: "uppercase",
+};
+
+const blogTitle = {
+  fontFamily: "Georgia, serif",
+  fontSize: "clamp(28px, 4vw, 45px)",
+  fontWeight: 400,
+  lineHeight: 1.15,
+  margin: "40px 0",
+  overflowWrap: "anywhere",
+};
+
+const readMore = {
+  color: "#aaa",
+  fontSize: "14px",
+  letterSpacing: "1px",
+};
+
+const message = {
+  color: "#888",
+  fontSize: "16px",
+};
