@@ -3,6 +3,18 @@ import { client } from "../sanity";
 
 console.log("Blogs.js loaded");
 
+function getPlainText(blocks) {
+  if (!Array.isArray(blocks)) return "";
+  return blocks
+    .map((block) =>
+      block._type === "block" && Array.isArray(block.children)
+        ? block.children.map((child) => child.text || "").join("")
+        : ""
+    )
+    .join(" ")
+    .slice(0, 140);
+}
+
 export function Blogs() {
   const [blogs, setBlogs] = useState([
     {
@@ -18,12 +30,17 @@ export function Blogs() {
         title,
         "slug": slug.current,
         "category": categories[0]->title,
-        "desc": pt::text(body)[0...140]
+        body
       }`)
       .then((data) => {
-        console.log("Sanity blogs:", data);
+        console.log("Sanity blogs raw:", data);
+
         if (Array.isArray(data) && data.length > 0) {
-          setBlogs(data);
+          const withDesc = data.map((post) => ({
+            ...post,
+            desc: getPlainText(post.body),
+          }));
+          setBlogs(withDesc);
         }
       })
       .catch((err) => {
@@ -34,11 +51,13 @@ export function Blogs() {
   return (
     <section id="blogs" style={blogsSection}>
       <p style={tag}>BLOGS</p>
+
       <h2 style={heading}>
         Latest insights
         <br />
         from our studio.
       </h2>
+
       <div style={blogsGrid}>
         {blogs.map((blog, index) => (
           <article key={index} style={glassCard}>
