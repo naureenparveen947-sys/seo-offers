@@ -55,15 +55,15 @@ export default function Contact() {
               </div>
             ))}
 
-            {/* WhatsApp Button */}
-            <a href="https://wa.me/923001234567" target="_blank" rel="noreferrer" style={{
+            {/* GET FREE AUDIT Button */}
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeHSiupppDmk2vwBMb0xgHlBf0cq9PV5asxCb3XUe-r6CtchA/viewform?usp=header"" target="_blank" rel="noreferrer" style={{
               display: 'inline-flex', alignItems: 'center', gap: '10px',
               marginTop: '20px', padding: '14px 30px',
               background: 'linear-gradient(90deg, #00c853, #00e676)',
               border: 'none', borderRadius: '5px', color: 'white',
               textDecoration: 'none', fontWeight: 900, fontSize: '0.85rem', letterSpacing: '2px',
               boxShadow: '0 0 20px rgba(0,200,83,0.4)'
-            }}>💬 WHATSAPP US</a>
+            }}>💬 GET FREE AUDIT US</a>
           </div>
 
           {/* Right — Form */}

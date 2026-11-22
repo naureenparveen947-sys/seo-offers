@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export function Navbar() {
   const [mobile, setMobile] = useState(window.innerWidth < 900);
@@ -14,9 +15,16 @@ export function Navbar() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const goHome = () => {
+    setMenuOpen(false);
+    window.scrollTo(0, 0);
+  };
+
   return (
     <nav style={nav}>
-      <div style={logo}>SEO Offers</div>
+      <Link to="/" style={logo} onClick={goHome}>
+        SEO Offers
+      </Link>
 
       {mobile ? (
         <>
@@ -29,23 +37,23 @@ export function Navbar() {
 
           {menuOpen && (
             <div style={mobileMenu}>
-              <a href="#about" style={mobileLink}>
+              <a href="#about" style={mobileLink} onClick={() => setMenuOpen(false)}>
                 About
               </a>
 
-              <a href="#services" style={mobileLink}>
+              <a href="#services" style={mobileLink} onClick={() => setMenuOpen(false)}>
                 Services
               </a>
 
-              <a href="#packages" style={mobileLink}>
+              <a href="#packages" style={mobileLink} onClick={() => setMenuOpen(false)}>
                 Packages
               </a>
 
-              <a href="#blogs" style={mobileLink}>
+              <a href="#blogs" style={mobileLink} onClick={() => setMenuOpen(false)}>
                 Blogs
               </a>
 
-              <a href="#contact" style={mobileLink}>
+              <a href="#contact" style={mobileLink} onClick={() => setMenuOpen(false)}>
                 Contact
               </a>
 
@@ -112,6 +120,8 @@ const logo = {
   fontWeight: "bold",
   letterSpacing: "2px",
   fontFamily: "Georgia, serif",
+  textDecoration: "none",
+  cursor: "pointer",
 };
 
 const navLinks = {

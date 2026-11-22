@@ -2,15 +2,15 @@ export function Services() {
   const services = [
     {
       title: "SEO Optimization",
-      desc: "Technical SEO, keyword systems, and ranking strategies built for long-term visibility.",
-    },
-    {
-      title: "Website Design",
-      desc: "Modern cinematic websites with responsive layouts and premium user experiences.",
+      desc: "We optimize your website for search engines to improve rankings, organic traffic, visibility, user experience, and generate more qualified leads.",
     },
     {
       title: "Local SEO",
-      desc: "Google Business optimization and local growth strategies for targeted reach.",
+      desc: "We boost your local search presence to attract nearby customers, improve Google visibility, increase calls, visits, and location-based leads.",
+    },
+    {
+      title: "AI SEO (AEO and GEO)",
+      desc: "We optimize your content for AI search to improve visibility across ChatGPT, Google AI, and generative search platforms.",
     },
   ];
 
@@ -19,9 +19,9 @@ export function Services() {
       <p style={tag}>SERVICES</p>
 
       <h2 style={heading}>
-        Services designed
+        Powering Your Visibility
         <br />
-        for modern brands.
+        Across Search & AI.
       </h2>
 
       <div style={servicesGrid}>
