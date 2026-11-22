@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import Sphere from "./Sphere";
 
+const AUDIT_LINK =
+  "https://docs.google.com/forms/d/e/1FAIpQLSfac6upo7gLV8n9KvUDs1n6BsKoLyuJASkW560OLJ1f4ZlWJQ/viewform";
+
 export function Home() {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -27,9 +30,14 @@ export function Home() {
           </h1>
         </div>
 
-        <button style={isMobile ? mobileCenterBtn : centerBtn}>
+        <a
+          href={AUDIT_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={isMobile ? mobileCenterBtn : centerBtn}
+        >
           GET FREE AUDIT
-        </button>
+        </a>
 
         <div style={isMobile ? mobileRightText : rightText}>
           <h1 style={isMobile ? mobileHeading : rightHeading}>
@@ -120,8 +128,14 @@ const centerBtn = {
   boxShadow: "0 0 40px rgba(255,255,255,0.12)",
   color: "white",
   fontWeight: "bold",
+  fontSize: "13.333px",
   letterSpacing: "2px",
   cursor: "pointer",
+  textDecoration: "none",
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  whiteSpace: "nowrap",
 };
 
 const bridgeSection = {
