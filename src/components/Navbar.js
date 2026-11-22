@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+const AUDIT_LINK =
+  "https://docs.google.com/forms/d/e/1FAIpQLSfac6upo7gLV8n9KvUDs1n6BsKoLyuJASkW560OLJ1f4ZlWJQ/viewform";
+
 export function Navbar() {
   const [mobile, setMobile] = useState(window.innerWidth < 900);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -57,9 +60,15 @@ export function Navbar() {
                 Contact
               </a>
 
-              <button style={mobileBtn}>
+              <a
+                href={AUDIT_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={mobileBtn}
+                onClick={() => setMenuOpen(false)}
+              >
                 GET FREE AUDIT
-              </button>
+              </a>
             </div>
           )}
         </>
@@ -87,9 +96,14 @@ export function Navbar() {
             </a>
           </div>
 
-          <button style={ctaBtn}>
+          <a
+            href={AUDIT_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={ctaBtn}
+          >
             GET FREE AUDIT
-          </button>
+          </a>
         </>
       )}
     </nav>
@@ -144,6 +158,9 @@ const ctaBtn = {
   color: "black",
   fontWeight: "bold",
   cursor: "pointer",
+  textDecoration: "none",
+  display: "inline-block",
+  textAlign: "center",
 };
 
 const menuBtn = {
@@ -187,4 +204,7 @@ const mobileBtn = {
   color: "black",
   fontWeight: "bold",
   cursor: "pointer",
+  textDecoration: "none",
+  display: "block",
+  textAlign: "center",
 };
