@@ -79,6 +79,7 @@ const overlay = {
   background:
     "linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.45))",
   zIndex: 1,
+  pointerEvents: "none",
 };
 
 const leftText = {
@@ -87,6 +88,7 @@ const leftText = {
   left: "4%",
   transform: "translateY(-50%)",
   zIndex: 3,
+  pointerEvents: "none",
 };
 
 const rightText = {
@@ -95,6 +97,7 @@ const rightText = {
   bottom: "10%",
   zIndex: 3,
   textAlign: "right",
+  pointerEvents: "none",
 };
 
 const leftHeading = {
@@ -118,7 +121,8 @@ const centerBtn = {
   top: "74%",
   left: "30%",
   transform: "translate(-50%, -50%)",
-  zIndex: 4,
+  zIndex: 10,
+  pointerEvents: "auto",
   padding: "20px 54px",
   borderRadius: "999px",
   border: "1px solid rgba(255,255,255,0.14)",
